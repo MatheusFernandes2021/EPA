@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)https://matheusfernandes2021.github.io/EPA/ -->
+<html lang="pt-br">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App EPA</title>
+<style>
+    /* Import's de Fontes */
+
+    @import url('https://fonts.googleapis.com/css2?family=Gemunu+Libre&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200&display=swap');
+
+    /* Básico */
+
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+
+    /* Body com background */
+
+    body{
+        background:#0F1840;
+        overflow-y: hidden;
+    }
+
+    /*  ----------------------------------- MOBILE ----------------------------------- */
+
+     @media (max-width: 800px){ 
+    
+        /* Tela de Opções */
+
+        #Menu{
+            width: 35px;
+            height: 30px;
+            margin: 30px 0px 20px 20px;
+            cursor: pointer;
+        }
+
+        .Barra{
+            height: 5px;
+            width: 100%;
+            background-color: #FFF;
+            display: block;
+            border-radius: 5px;
+            transition: 0.5s ease;
+            z-index: 10;
+        }
+
+        #Barra-1{
+            transform: translateY(-4px);
+        }
+
+        #Barra-3{
+            transform: translateY(4px);
+        }
+
+        #Barra-Menu{
+            z-index: 9999;
+        }
+
+
+        .Mudar .Barra{
+            background-color: #FFF;
+        }
+
+        .Mudar #Barra-1{
+            transform: translateY(4px) rotateZ(-45deg);
+        }
+
+        .Mudar #Barra-3{
+            transform: translateY(-6px) rotate(45deg);
+        }
+
+        .Mudar #Barra-2{
+            opacity: 0;
+        }
+
+        .Mudar{
+            display: block;
+        }
+
+        .Voltar{
+            display: none;
+        }
+
+
+        .Container{
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 140px;
+            height: 200px;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+            margin-left: 50px;
+            border-radius: 20px;
+
+            z-index: 9999;
+        }
+
+        .Container hr{
+            margin: 40px 0 40px 0;
+            width: 80%;
+            background: #FFF;
+        }
+
+        .Container .PqoLucasPediu{
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .Container p{
+            display: flex;
+            align-self: center;
+            color: #FFF;
+            font-family: 'Gemunu Libre', sans-serif;
+            text-align: center;
+        }
+
+        .Container .PqoLucasPediu input[type=range]{
+            -webkit-appearance: none;
+            width: 40%;
+            background: #FFF;
+            border-radius: 20px;
+        }
+
+        .Container .PqoLucasPediu input[type=range]:focus{
+            outline: none;
+        }
+
+    /* Google Chrome e Firefox */
+
+        .Container .PqoLucasPediu input[type=range]::-webkit-slider-thumb{
+            -webkit-appearance: none;
+            border: none;
+            height: 18px;
+            width: 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            background: #263EA6;
+        }
+
+        .Container .PqoLucasPediu input[type=range]::-ms-track{
+            width: 100%;
+            cursor: pointer;
+            background: transparent;
+            border-color: transparent;
+            color: transparent;
+        }
+
+        .Container .PqoLucasPediu input[type=range]::-ms-thumb{
+            -webkit-appearance: none;
+            border: none;
+            height: 18px;
+            width: 18px;
+            border-radius: 20px;
+            background: #263EA6;
+            cursor: pointer;
+        }
+
+
+        .Container .toggle{
+            background: #0F1840;
+            border-radius: 25px;
+            height: 25px;
+            padding: 0 6px;
+        }
+
+        .Container .toggle input{
+            width: 100%;
+        }
+
+
+        .OpcoesMedida{
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 120px;
+            height: 110px;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+            margin-left: 200px;
+            margin-top: -200px;
+            border-radius: 20px;
+        }
+
+        .OpcoesMedida p{
+            display: flex;
+            align-self: center;
+            color: #FFF;
+            font-family: 'Gemunu Libre', sans-serif;
+            text-align: center;
+        }
+
+        .OpcoesMedida hr{
+            margin: 10px 0 10px 0;
+            width: 80%;
+            background: #FFF;
+        }
+
+
+        /* Conteúdo */
+
+        .Conteudo{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 40vh;
+        }
+
+        .Conteudo #Velocidade{
+            font-family: 'Gemunu Libre', sans-serif;
+            font-size: 80px;
+            color: #FFF;
+            flex-wrap: wrap;
+            margin-top: 200px;
+        }
+
+        .Conteudo #Unidade{
+            font-family: 'Gemunu Libre', sans-serif;
+            color: #FFF;
+            font-size: 30px;
+        }
+
+        .Informacoes{
+            margin-top: 100px;
+            min-height: 0vh;
+        }
+
+        .Informacoes .Informacoes1{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            color: #FFF;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 12px;
+        }
+
+        .Informacoes .Informacoes2{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            color: #FFF;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 20px;
+        }
+    }
+
+    /* ----------------------------------- DESKTOP -----------------------------------  */
+
+    @media (min-width: 801px){
+        
+        /* Tela de Opções */
+
+        #Menu{
+            width: 45px;
+            height: 30px;
+            margin: 30px 0px 20px 20px;
+            cursor: pointer;
+        }
+
+        .Barra{
+            height: 5px;
+            width: 100%;
+            background-color: #FFF;
+            display: block;
+            border-radius: 5px;
+            transition: 0.5s ease;
+            z-index: 10;
+        }
+
+        #Barra-1{
+            transform: translateY(-4px);
+        }
+
+        #Barra-3{
+            transform: translateY(4px);
+        }
+
+        #Barra-Menu{
+            position: relative;
+            z-index: 2;
+        }
+
+
+        .Mudar .Barra{
+            background-color: #FFF;
+        }
+
+        .Mudar #Barra-1{
+            transform: translateY(4px) rotateZ(-45deg);
+        }
+
+        .Mudar #Barra-3{
+            transform: translateY(-6px) rotate(45deg);
+        }
+
+        .Mudar #Barra-2{
+            opacity: 0;
+        }
+
+        .Mudar{
+            display: block;
+        }
+
+        .Voltar{
+            display: none;
+        }
+
+
+        .Container{
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 300px;
+            height: 210px;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+            margin-left: 50px;
+            border-radius: 20px;
+            position: absolute;
+        }
+
+        .Container hr{
+            margin: 40px 0 40px 0;
+            width: 80%;
+            background: #FFF;
+        }
+
+        .Container .PqoLucasPediu{
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .Container p{
+            display: flex;
+            align-self: center;
+            font-size: 1.5em;
+            color: #FFF;
+            font-family: 'Gemunu Libre', sans-serif;
+            text-align: center;
+        }
+
+        .Container p:hover{
+            cursor: pointer;
+        }
+
+        .Container .PqoLucasPediu input[type=range]{
+            -webkit-appearance: none;
+            width: 30%;
+            background: #FFF;
+            border-radius: 20px;
+        }
+
+        .Container .PqoLucasPediu input[type=range]:focus{
+            outline: none;
+        }
+
+    /* Google Chrome e Firefox */
+
+        .Container .PqoLucasPediu input[type=range]::-webkit-slider-thumb{
+            -webkit-appearance: none;
+            border: none;
+            height: 18px;
+            width: 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            background: #263EA6;
+        }
+
+        .Container .PqoLucasPediu input[type=range]::-ms-track{
+            width: 100%;
+            cursor: pointer;
+            background: transparent;
+            border-color: transparent;
+            color: transparent;
+        }
+
+        .Container .PqoLucasPediu input[type=range]::-ms-thumb{
+            -webkit-appearance: none;
+            border: none;
+            height: 18px;
+            width: 18px;
+            border-radius: 20px;
+            background: #263EA6;
+            cursor: pointer;
+        }
+
+
+        .Container .toggle{
+            background: #0F1840;
+            border-radius: 25px;
+            height: 25px;
+            padding: 0 6px;
+        }
+
+        .Container .toggle input{
+            width: 50%;
+        }
+
+
+        /* Opções de Medida */
+
+        .OpcoesMedida{
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 180px;
+            height: 170px;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+            margin-left: 360px;
+            border-radius: 20px;
+            font-size: 1.125em;
+        }
+
+        .OpcoesMedida p{
+            display: flex;
+            align-self: center;
+            color: #FFF;
+            font-family: 'Gemunu Libre', sans-serif;
+            text-align: center;
+        }
+
+        .OpcoesMedida p:hover{
+            cursor: pointer;
+        }
+
+        .OpcoesMedida hr{
+            margin: 10px 0 10px 0;
+            width: 80%;
+            background: #FFF;
+        }
+
+
+        /* Conteúdo */
+
+        .Conteudo{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 60vh;
+        }
+
+        .Conteudo #Velocidade{
+            font-family: 'Gemunu Libre', sans-serif;
+            font-size: 8em;
+            color: #FFF;
+            flex-wrap: wrap;
+        }
+
+        .Conteudo #Unidade{
+            font-family: 'Gemunu Libre', sans-serif;
+            color: #FFF;
+            font-size: 2.5em;
+        }
+
+        .Informacoes{
+            margin-top: 100px;
+            min-height: 28.6vh;
+        }
+
+        .Informacoes .Informacoes1{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            color: #FFF;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 1.125em;
+        }
+
+        .Informacoes .Informacoes2{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            color: #FFF;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 1.125em;
+        }
+    }
+    
+</style></head>
+
+<body>
+    <div id="Barra-Menu">
+        <div id="Menu" onclick="onClickMenu()">
+            <div id="Barra-1" class="Barra"></div>
+            <div id="Barra-2" class="Barra"></div>
+            <div id="Barra-3" class="Barra"></div>
+        </div>
+
+
+        <div class="Container" id="Container">
+            <p onclick="OpcoesMedida()">Unidade de Medida&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;</p>
+            <hr>
+            <div class="PqoLucasPediu">
+                <p>Tema</p>
+                <input type="range" min="0" max="1" id="TrocarTheme" value="0" onchange="TrocarTheme(this.value)" class="toggle">
+            </div>
+        </div>
+
+        <div class="OpcoesMedida" id="OpcoesMedida">
+            <p id="KM" onclick="mudarUnidade('Km/h')">Km/h</p>
+            <hr>
+            <p id="CM" onclick="mudarUnidade('Cm/s')">Cm/s</p>
+            <hr>
+            <p id="M" onclick="mudarUnidade('M/s')">M/s</p>
+        </div>
+    </div>
+
+
+    <div class="Conteudo" id="Conteudo">
+        <h1 id="Velocidade">00</h1>
+        <p id="Unidade">Km/h</p>
+    </div>
+
+    <div class="Informacoes" id="Informacoes">
+        <div class="Informacoes1">
+            <h1>Tempo: </h1>
+            <h1>Distância:</h1>
+        </div>
+
+        <div class="Informacoes2">
+            <p id="Tempo">00s</p>
+            <p id="Distancia">10cm</p>
+        </div>
+    </div>
+
+
+
+<script>
+    var Conteudo = document.getElementById("Conteudo");
+    var OpcaoMedida = document.getElementById("OpcoesMedida");
+    var Informacoes = document.getElementById("Informacoes");
+    var Container = document.getElementById("Container");
+    var H1 = document.getElementById("Velocidade");
+    var PUnidade = document.getElementById("Unidade");
+    var i = 0;
+
+    function TrocarTheme(valor){
+        var TrocarTema = document.getElementById("TrocarTheme").value;
+        TrocarTema = valor;
+
+        if(TrocarTema == 0){
+            document.body.style = "background: #0F1840";
+        }
+
+        else if(TrocarTema == 1){
+            document.body.style = "background: #2042B3";
+        }
+    }
+
+    function onClickMenu(){
+        var Largura = window.screen.width;
+
+        // PC
+        if(Largura >= 801){
+            if(i == 0){
+                document.getElementById("Menu").classList.add("Mudar");
+                Container.style.display = "flex";
+                Conteudo.style.marginTop = "0vh";
+                i++;
+            }
+            else{
+                document.getElementById("Menu").classList.remove("Mudar");
+                Container.style.display = "none";
+                OpcaoMedida.style.display = "none";
+                Conteudo.style.marginTop = "0vh";
+                i++;
+                i = 0;
+            }
+        }
+
+        // Mobile
+
+        else{
+            if(i == 0){
+                document.getElementById("Menu").classList.add("Mudar");
+                Container.style.display = "flex";
+                Conteudo.style.display = "flex";
+                Conteudo.style.marginTop = "-23vh";
+                i++;
+            }
+            else{
+                document.getElementById("Menu").classList.remove("Mudar");
+                Container.style.display = "none";
+                OpcaoMedida.style.display = "none";
+                Conteudo.style.marginTop = "0vh";
+                i++;
+                i = 0;
+            }
+        }
+    }
+
+
+    function OpcoesMedida(){
+        var Largura = window.screen.width;
+            if(Largura >= 801){
+                OpcaoMedida.style.display = "flex";
+                Conteudo.style.marginTop = "-22vh";
+                i++;
+            }
+            else{
+                OpcaoMedida.style.display = "flex";
+                Conteudo.style.marginTop = "-13vh";
+                i++;
+            }
+    }
+
+    let storage = {
+        toStorage: (unidade) => localStorage.setItem("unidade", unidade) || "cm",
+        fromStorage: () => localStorage.getItem("unidade") || "cm",
+        clearStorage: () => localStorage.clear()
+    }
+
+    function mudarUnidade(unidade){
+        storage.toStorage(unidade);
+        location.reload();
+    }
+    unidade = storage.fromStorage();
+    PUnidade.innerHTML = unidade;
+</script>
+<script>
+    var Velocidade = 30;
+    var Tempo = 20;
+    
+    var PTempo = document.getElementById("Tempo").innerHTML = Tempo + 's';
+    
+    if(unidade=="Cm/s"){
+        H1.innerText = Velocidade;
+    }
+    if(unidade=="M/s"){
+        H1.innerText = (Velocidade/100).toFixed(2);
+    }
+    if(unidade=="Km/h"){
+        H1.innerText = (Velocidade/27.778).toFixed(2);
+    }
+</script>
+</body></html>
